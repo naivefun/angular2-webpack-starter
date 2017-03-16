@@ -1,6 +1,9 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges
+} from '@angular/core';
 import { TextEditorMode } from './text-editor.model';
 import * as _ from 'lodash';
+import { Observable, Subject } from 'rxjs';
 
 declare const ace: any;
 
@@ -20,9 +23,16 @@ export class TextEditorComponent implements AfterViewInit, OnChanges {
   @Input() public aceId;
   @Input() public mode = TextEditorMode.YAML; // defaults to YAML
   @Input() public text: string;
+  @Input() public debounce = 600;
+  @Output() public onTextChanged = new EventEmitter<string>();
 
   private editor: any;
   private session: any;
+
+  private textChanged: Subject<string> = new Subject();
+  private textChanged$: Observable<string> = this.textChanged.asObservable()
+    .debounceTime(this.debounce)
+    .distinctUntilChanged();
 
   public ngAfterViewInit(): void {
     this.editor = ace.edit(this.aceId);
@@ -33,6 +43,15 @@ export class TextEditorComponent implements AfterViewInit, OnChanges {
     if (this.text) {
       this.setText(this.text);
     }
+
+    this.session.on('change', () => {
+      let text = this.getValue();
+      this.textChanged.next(text || '');
+    });
+
+    this.textChanged$.subscribe((text: string) => {
+      this.onTextChanged.emit(text);
+    });
   }
 
   public ngOnChanges(changes: SimpleChanges): void {

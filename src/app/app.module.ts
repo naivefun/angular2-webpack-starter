@@ -20,6 +20,7 @@ import '../styles/headings.css';
 import { ParserComponent } from './+parser/parser.component';
 import { AboutComponent } from './about/about.component';
 import { TextEditorComponent } from './@components/text-editor/text-editor.component';
+import { ConvertService } from './@services/convert.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -53,7 +54,8 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    ConvertService
   ]
 })
 export class AppModule {

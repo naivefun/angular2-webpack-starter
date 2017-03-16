@@ -1,10 +1,10 @@
 <div class="parser-container">
   <div class="left">
     <div class="toolbar">Javascript Object, YAML</div>
-    <text-editor [aceId]="'left'" [text]="'asdfasdf'"></text-editor>
+    <text-editor [aceId]="'left'" (onTextChanged)="onTextChanged($event)"></text-editor>
   </div>
   <div class="right">
     <div class="toolbar">Javascript Object, YAML</div>
-    <text-editor [aceId]="'right'"></text-editor>
+    <text-editor [aceId]="'right'" [text]="convertedString"></text-editor>
   </div>
 </div>
