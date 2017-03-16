@@ -1,14 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
+
+declare const ace: any;
 
 @Component({
   selector: 'text-editor',
   template: `
-    <textarea class="form-control" [placeholder]="placeholder"></textarea>
+    <div [id]="aceId" class="editor"></div>
   `,
   styles: [`
-  textarea { flex-grow: 1; }
+    .editor {
+      flex-grow: 1;
+    }
   `]
 })
-export class TextEditorComponent {
-  @Input() public placeholder;
+export class TextEditorComponent implements AfterViewInit {
+
+  @Input() public aceId;
+
+  private editor: any;
+
+  public  ngAfterViewInit(): void {
+    this.editor = ace.edit(this.aceId);
+    this.editor.setTheme('ace/theme/github');
+    this.editor.getSession().setMode('ace/mode/javascript');
+  }
+
 }
