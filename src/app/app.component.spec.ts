@@ -17,17 +17,17 @@ describe(`App`, () => {
   // async beforeEach
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
+      declarations: [AppComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [AppState]
     })
-    .compileComponents(); // compile template and css
+      .compileComponents(); // compile template and css
   }));
 
   // synchronous beforeEach
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
-    comp    = fixture.componentInstance;
+    comp = fixture.componentInstance;
 
     fixture.detectChanges(); // trigger initial data binding
   });
@@ -38,9 +38,9 @@ describe(`App`, () => {
   });
 
   it(`should be @AngularClass`, () => {
-    expect(comp.url).toEqual('https://twitter.com/AngularClass');
+    expect(comp.url).toEqual('https://oparser.com');
     expect(comp.angularclassLogo).toEqual('assets/img/angularclass-avatar.png');
-    expect(comp.name).toEqual('Angular 2 Webpack Starter');
+    expect(comp.name).toEqual('Versatile Object Parser & Converter');
   });
 
   it('should log ngOnInit', () => {

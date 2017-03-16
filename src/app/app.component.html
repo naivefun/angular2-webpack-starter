@@ -1,0 +1,18 @@
+<nav>
+  <a [routerLink]=" ['./'] "
+     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+    Index
+  </a>
+  <a [routerLink]=" ['./parser'] "
+     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+    Parser
+  </a>
+  <a [routerLink]=" ['./about'] "
+     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+    About
+  </a>
+</nav>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

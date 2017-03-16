@@ -1,0 +1,29 @@
+.parser-container {
+  display: flex;
+  flex-grow: 1;
+  background-color: #7f7f7f;
+  overflow-y: scroll;
+}
+
+.left {
+  width: 50%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow: scroll;
+  background-color: #00838F;
+}
+
+.right {
+  width: 50%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow: scroll;
+  background-color: yellow;
+}
+
+.toolbar {
+  height: 50px;
+  background-color: tomato;
+}
